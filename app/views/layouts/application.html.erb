@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to "Home", user_path  %>
+      </li>
+
+      <li>
+        <%= link_to "Users", books_path %>
+      </li>
+
+      <li>
+        <%= link_to "Books", "http://google.com/" %>
+      </li>
+
+      <li>
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      </li>
+
+    <% else %>
+      <li>
+        <%= link_to "Home", user_path %>
+      </li>
+
+      <li>
+        <%= link_to "About", about_path %>
+      </li>
+
+      <li>
+        <%= link_to "sign up", "http://google.com/"  %>
+      </li>
+
+      <li>
+        <%= link_to "login", "http://google.com/" %>
+      </li>
+    <% end %>
+
+    <%= yield %>
+  </body>
+
+</html>
