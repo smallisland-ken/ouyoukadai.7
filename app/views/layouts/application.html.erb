@@ -31,8 +31,8 @@
       </li>
 
       <li>
-        <%= link_to users_path, class: 'fas fa-link nav-link text-light' do %>
-        About
+        <%= link_to users_path, class: 'fas fa-users nav-link text-light' do %>
+        Users
         <% end %>
       </li>
 
@@ -80,7 +80,19 @@
     </header>
     <main class="mb-auto">
 
+
     <%= yield %>
+
   </body>
+       <footer class="container mt-5">
+      <div container>
+        <div row>
+          <div class="mx-auto">
+          <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
 
 </html>
