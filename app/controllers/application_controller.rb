@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    "https://5e66cbfdc0a14e1fb14b28962a845f21.vfs.cloud9.us-east-1.amazonaws.com/users/sign_in"
+    "https://5e66cbfdc0a14e1fb14b28962a845f21.vfs.cloud9.us-east-1.amazonaws.com/"
   end
 
   protected
