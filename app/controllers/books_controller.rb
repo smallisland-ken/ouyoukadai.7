@@ -1,15 +1,16 @@
 class BooksController < ApplicationController
 
   def show
+
   end
 
   def index
-  end
+    end
 
   def create
     @book = Book.new(book_params)
     @book.save
-    redirect_to  book_path
+    redirect_to book_path(current_user.id)
   end
 
   private

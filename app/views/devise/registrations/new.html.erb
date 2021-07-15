@@ -9,7 +9,7 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
 
   <div class="field">
@@ -33,7 +33,7 @@
   <div class="actions">
     <%= f.submit "Sign up", class: 'btn btn-success btn-sm' %>
   </div>
-  
+
 <% end %>
 <%= render "devise/shared/links" %>
 </div>
