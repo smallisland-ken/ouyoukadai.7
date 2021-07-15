@@ -1,16 +1,4 @@
-<div class="container" px-5 px-sm-0">
-<div class="row">
-<div class="col-md-3">
-<!--userの情報表示-->
-<h1>User info</h1>
-<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-<p>name：<%= @user.name %></p>
-<p>introduction：<%= @user.introduction %></p>
-
-<!--編集画面へのリンク-->
-<%= link_to edit_user_path(current_user.id), class: "btn btn-outline-dark btn-sm btn-block" do %>
-  <i class="fas fa-user-cog"></i>
-<% end %>
+<%= render 'users/user_template', user: @user %>
 
 <!--本の情報投稿-->
 <h1>New book</h1>
@@ -27,13 +15,25 @@
 <!--一覧表示-->
 <div class="col-md-8 offset-md-1">
 <h2>Users</h2>
-
+<table class="table">
+<thead>
+<tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+</tr>
+</thead>
+<tbody>
 <% @users.each do |user| %>
-<table class="table table-striped">
-  <p>image:<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></p>
-  <p>name：<%= User.name %></p>
-</table>
+<tr>
+  <td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+  <td><%= user.name %></td>
+  <td><%= link_to "Show", "/users/#{user.id}" %></td>
+
+</tr>
 <% end %>
+</tbody>
+</table>
 
 </div>
 </div>
