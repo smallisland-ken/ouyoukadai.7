@@ -9,13 +9,18 @@ class BooksController < ApplicationController
   end
 
   def index
+    @book = Book.new
+    # 空のモデルを持ってくる
+    @books = Book.all
+    # bookモデルからすべての情報をもってくる
+
+
   end
 
   def create
     @book = Book.new(book_params)
-    @book.user_id = current_user.id
     @book.save
-    redirect_to book_path(@book)
+    redirect_to 
   end
 
   private
