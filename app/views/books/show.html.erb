@@ -3,7 +3,7 @@
 
     <div class="col-md-3">
     <%= render 'users/user_template', user:@bookdetail %>
-    <%= render 'users/book_template', book:@book %>
+    <%= render 'users/book_template', book:@book_new %>
     </div>
 
 
@@ -12,11 +12,13 @@
       <table class="table">
       <tbody>
       <tr>
-      <td><%= link_to current_user.name, user_path(current_user) %><%= attachment_image_tag @bookdetail, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+      <td><%= attachment_image_tag @bookdetail, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><br><%= link_to current_user.name, user_path(current_user) %></td>
       <td><%= @book.title %></td>
       <td><%= @book.body %></td>
-      <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
+      <% if @bookdetail.id == current_user.id %>
+  　　　<td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
       <td><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
+
       </tr>
     </div>
 

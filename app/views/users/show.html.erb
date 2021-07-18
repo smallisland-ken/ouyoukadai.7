@@ -20,8 +20,9 @@
 <% @books.each do |book| %>
 <tr>
 <td><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%></td>
+<td><%= link_to book.title, book_path(book) %></td>
+<!--book_pathに@booksをいれてしまっていたので、すべてのデータを取得したことによりエラーが発生した。showは一件のデータを表示したいのでeach文のブロック変数を記載すればOK-->
 <td><%= book.body %></td>
-<td><%= book.title %></td>
 </tr>
 
 <% end %>

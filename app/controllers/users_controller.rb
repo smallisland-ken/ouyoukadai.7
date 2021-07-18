@@ -20,20 +20,23 @@ class UsersController < ApplicationController
   def create
     @book = @user.books
     @book.save
+    flash[:notice] = "You have created book successfully."
     redirect_to user_path(current_user.id)
   end
 
   def update
   @user = User.find(params[:id])
-  @user.update(list_params)
+  if @user.update(list_params)
+  flash[:notice] = "You have updated user successfully."
   redirect_to user_path(current_user.id)
+  else
+    render :edit
+  end
   end
 
   private
+  
   def list_params
     params.require(:user).permit(:name, :introduction, :profile_image)
-  end
-  def user_params
-
   end
 end

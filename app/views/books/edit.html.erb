@@ -2,12 +2,24 @@
   <div class="row">
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
+  <%# ここからエラーメッセージ %>
+    <% if @editbook.errors.any? %>
+    <div id="error_explanation">
+      <div class="error"><%= pluralize(@editbook.errors.count, "error") %> prohibited this product from being saved:</div>
+
+      <ul>
+        <% @editbook.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%# ここまでエラーメッセージ <%>
+
+
 <%= form_with model:@editbook, local: true do |f| %>
-　<h2>Editing Book</h2>
+<h2>Editing Book</h2>
 <!-- form_with部分 -->
-
-  
-
   <div class="form-group">
 
   <%= f.text_field :title, autofocus: true %>

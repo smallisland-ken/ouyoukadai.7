@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book_new = Book.new
     @book = Book.find(params[:id])
     @bookdetail = @book.user
   end
@@ -24,19 +25,32 @@ class BooksController < ApplicationController
     # この時点でidが自動で付与される。
     @book.user_id = current_user.id
     # 上部コードがないとbookモデルにuser_idが付与されないので、エラーとなってしまう。
-    @book.save
+    if @book.save
+    flash[:notice] = "You have created book successfully."
+
     redirect_to book_path(@book)
+    else
+      @books = Book.all
+      @user = current_user
+      render :index
+    end
   end
 
   def edit
    @editbook = Book.find(params[:id])
+
   end
 
   def update
-   book = Book.find(params[:id])
-   book.update(book_params)
-   redirect_to book_path(book.id)
+   @editbook = Book.find(params[:id])
+   if @editbook.update(book_params)
+   flash[:notice] = "You have updated book successfully."
+   redirect_to book_path(@editbook.id)
 
+   else
+    render :edit
+    # editのviewだけを表示しているが、コントローラーはupdateの内容が実行されている。
+   end
   end
 
   def destroy
