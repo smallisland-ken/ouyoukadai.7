@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @book = Book.new
@@ -14,12 +15,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-   @user = User.find(params[:id])
-   if @user == current_user
-     render "edit"
-   else
-    redirect_to edit_user(@user)
-  end
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
   end
 
   def create
@@ -40,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def list_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
