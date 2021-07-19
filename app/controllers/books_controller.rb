@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     # bookモデルからすべての情報をもってくる
     # @bookfind = Book.find(params[:id])
     # @bookfind.user_id = current_user.id
-    end
+  end
 
   def create
     @book = Book.new(book_params)
@@ -38,7 +38,12 @@ class BooksController < ApplicationController
 
   def edit
    @editbook = Book.find(params[:id])
-
+   @bookuser = @editbook.user
+   if @bookuser == current_user
+      render "edit"
+   else
+     redirect_to book_path
+  end
   end
 
   def update
