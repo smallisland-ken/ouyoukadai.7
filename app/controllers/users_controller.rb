@@ -17,12 +17,12 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user)
+          redirect_to user_path(current_user)
     end
   end
 
   def create
-    @book = @user.books
+    @book = @user.books(list_params)
     @book.save
     flash[:notice] = "You have created book successfully."
     redirect_to user_path(current_user.id)
