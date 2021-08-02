@@ -26,6 +26,10 @@
                 <td><%= link_to book.title, book_path(book) %></td>
                 <!--book_pathに@booksをいれてしまっていたので、すべてのデータを取得したことによりエラーが発生した。showは一件のデータを表示したいのでeach文のブロック変数を記載すればOK-->
                 <td><%= book.body %></td>
+                <td>
+                <div class="comments">
+                <p>コメント件数：<%= book.book_comments.count %></p>
+                </td>
               </tr>
             <% end %>
           </tbody>
