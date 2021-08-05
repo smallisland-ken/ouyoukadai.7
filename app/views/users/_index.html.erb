@@ -1,0 +1,27 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>ユーザー名</th>
+            <th>紹介文</th>
+            <th>詳細</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="post">
+    <% users.each do |post| %>
+      <tr>
+        <td><%= post.name %></td>
+        <td><%= post.introduction %></td>
+        <td><%= link_to "詳細", user_path(post) %></td>
+          <% if post == current_user %>
+          <td><%= link_to "編集", edit_user_path(post) %></td>
+          <td><%= link_to "削除", user_path(post), method: :delete, remote: true %></td>
+          <% end %>
+          <td></td>
+          <td></td>
+        <% end %>
+      </tr>
+    </tbody>
+</table>

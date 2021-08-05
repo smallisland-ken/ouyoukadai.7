@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <%= render 'users/user_template', user:@bookdetail %>
+        <%= render 'users/user_template', user:@user %>
         <%= render 'users/book_template', book:@book_new %>
       </div>
       <div class="col-md-8 offset-md-1">
@@ -9,7 +9,7 @@
         <table class="table">
           <tbody>
             <tr>
-            <td><%= attachment_image_tag @bookdetail, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><br><%= link_to @bookdetail.name, user_path(@bookdetail) %></td>
+            <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><br><%= link_to @user.name, user_path(@user) %></td>
             <td><%= @book.title %></td>
             <td><%= @book.body %></td>
             <!--いいね機能-->
@@ -26,7 +26,7 @@
             <% end %>
             <% end %>
             </p>
-            <% if @bookdetail.id == current_user.id %>
+            <% if @user.id == current_user.id %>
             <!--if @book.user_id == current_user.id -->
             <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success"  %></td>
             <td><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
@@ -41,7 +41,7 @@
         </table>
         
         <% @book.book_comments.each do |post_comment| %>
-        <p><%= attachment_image_tag @bookdetail, :profile_image, fallback: "no_image.jpg" %></p>
+        <p><%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg" %></p>
         <%= post_comment.user.name %>
         <%= post_comment.comment %>
         <% if post_comment.user == current_user %>

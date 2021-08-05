@@ -1,0 +1,27 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>投稿者名</th>
+            <th>タイトル</th>
+            <th>本文</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="post">
+    <% books.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.body %></td>
+        <td><%= link_to "詳細", book_path(post) %></td>
+          <% if post.user == current_user %>
+          <td><%= link_to "編集", edit_book_path(post) %></td>
+          <td><%= link_to "削除", book_path(post), method: :delete, remote: true %></td>
+          <td></td>
+          <td></td>
+          <% end %>
+        <% end %>
+      </tr>
+    </tbody>
+</table>
