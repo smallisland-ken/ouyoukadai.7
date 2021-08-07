@@ -1,0 +1,5 @@
+<!--// #likes_buttons_< %= @blog.id %>この部分のHTMLだけ、renderで部分的に更新するという処理です-->
+<!--前半ではクラス　or IDを検索する・-->
+
+$('#likes_buttons_<%= @book.id %>').html("<%= j(render 'favorites/bookindex', books: @book) %>");
+<!--renderに対応する()が必要-->

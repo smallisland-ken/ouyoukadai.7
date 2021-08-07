@@ -13,19 +13,9 @@
             <td><%= @book.title %></td>
             <td><%= @book.body %></td>
             <!--いいね機能-->
-          　<td><% if @book.favorited_by?(current_user) %>
-            <p>
-            <%= link_to book_favorites_path(@book), method: :delete do %>
-            <%= @book.favorites.count %> いいね
-            <% end %>
-            </p>
-            <% else %>
-            <p>
-            <%= link_to book_favorites_path(@book), method: :post do %>
-            <%= @book.favorites.count %> いいね
-            <% end %>
-            <% end %>
-            </p>
+            <td id=likes_buttons_<%= @book.id %>>
+            <%= render 'favorites/bookindex', books:@book %>
+            </td>
             <% if @user.id == current_user.id %>
             <!--if @book.user_id == current_user.id -->
             <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success"  %></td>
@@ -39,20 +29,13 @@
             </tr>
           </tbody>
         </table>
-        
-        <% @book.book_comments.each do |post_comment| %>
-        <p><%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg" %></p>
-        <%= post_comment.user.name %>
-        <%= post_comment.comment %>
-        <% if post_comment.user == current_user %>
-        <div class="comment-delete btn">
-        <%= link_to "削除", book_book_comment_path(post_comment.book, post_comment), class: "btn btn-danger", method: :delete %>
+        <!--_bookcoomentの非同期通信の部分テンプレート-->
+        <div id="bookcomment_<%= @book.id %>">
+        <%= render 'books/bookcomment', book:@book %>
         </div>
-        <% end %>
-        <% end %>
         
         <div class="new-comment">
-        <%= form_with(model:[@book, @book_comments], local: true) do |f| %>
+        <%= form_with(model:[@book, @book_comments], local: false) do |f| %>
         <%= f.text_area :comment, rows:'3',placeholder: "コメントをここに" %>
         <%= f.submit "送信する" %>
         <% end %>

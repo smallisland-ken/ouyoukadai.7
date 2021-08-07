@@ -1,0 +1,11 @@
+<% book.book_comments.each do |post_comment| %>
+    <p><%= attachment_image_tag post_comment.user , :profile_image, fallback: "no_image.jpg" %></p>
+    <!--部分テンプレートの際は@での呼び出しはできないので、ローカル変数を使用しないといけない。attachment tagの場合は、あどしえーションを用いてuserを使えば、userのプロフィールが呼び出せる-->
+        <%= post_comment.user.name %>
+        <%= post_comment.comment %>
+        <% if post_comment.user == current_user %>
+    <div class="comment-delete btn">
+        <%= link_to "削除", book_book_comment_path(post_comment.book, post_comment), class: "btn btn-danger", method: :delete, remote:true %>
+    </div>
+    <% end %>
+<% end %>
