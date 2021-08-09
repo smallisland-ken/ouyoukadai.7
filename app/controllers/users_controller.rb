@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @relationship = Relationship.new
     @book = Book.new
     # 空のインスタンス変数なのでnewは可能。
     @users = User.all

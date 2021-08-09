@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
   get 'followings' => 'relationships#followings', as: 'followings'
   get 'followers' => 'relationships#followers', as: 'followers'
+  # resourceはindex,show,editなどにしか使用できず、フォロワー機能についてはfollowersアクションを自作しているため。
   end
   
   get '/search', to: 'searches#search'

@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   end
 
   def index
+    @all_ranks = Book.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
     @user = current_user
     @book = Book.new
     # 空のモデルを持ってくる
