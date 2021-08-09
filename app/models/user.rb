@@ -22,7 +22,8 @@ class User < ApplicationRecord
          has_many :followings, through: :relationships, source: :followed
         # 与フォロー関係を通じて参照→follower_idをフォローしている人
          has_many :book_comments, dependent: :destroy
-
+        
+        # フォロー判定するためのメソッド
         def follow(user_id)
             relationships.create(followed_id: user_id)
         end
