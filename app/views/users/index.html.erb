@@ -55,4 +55,7 @@
           </table>
         </div>
     </div>
+    <!--投稿数を数える記述-->
+    <%= current_user.books.where('created_at > ?', Date.today).count %>
+
 </div>
