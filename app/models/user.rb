@@ -13,6 +13,7 @@ class User < ApplicationRecord
          has_many :books, dependent: :destroy
          has_many :favorites, dependent: :destroy
          has_many :liked_posts, through: :favorites, source: :post
+        #いいねランキング参考記事  https://qiita.com/Kazuhiro_Mimaki/items/1f8e851b957f511c88e9
 
         #フォロー系のアソシエーション  
          has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy

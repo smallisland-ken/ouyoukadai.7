@@ -13,5 +13,8 @@ class Book < ApplicationRecord
     favorites.where(user_id: user.id).exists?
     end
     
+    # 本の投稿数を数える機能を追加
+    scope :created_today, -> { where(created_at: Time.zone.now.all_day) } # 今日
+    scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) } # 前日    
     
 end
