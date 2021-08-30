@@ -58,6 +58,7 @@
             
             <%= current_user.books.where('created_at > ?', Date.today).count %>
             <%= current_user.books.where('created_at > ?', Date.yesterday).count %>
+            <%= current_user.books.where('created_at > ?', 1.week).count %>
             <%= current_user.books.where('created_at > ?', 1.week.ago).count %>
             
         </div>
